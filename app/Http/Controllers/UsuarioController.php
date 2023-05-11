@@ -80,4 +80,11 @@ class UsuarioController extends Controller
         $dados = ['usuario' => Usuario::find($id)];
         return view('usuario_edit', $dados);
     }
+
+    public function delete($id)
+    {
+        if(Usuario::find($id)->delete())
+            return redirect('/usuarios');
+        else dd($id);
+    }
 }

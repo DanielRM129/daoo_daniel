@@ -37,6 +37,7 @@ Route::get('/usuario', [UsuarioController::class,'create']);
 Route::post('/usuario', [UsuarioController::class,'store']);
 Route::get('/usuario/{id}/edit', [UsuarioController::class,'edit'])->name('edit');
 Route::post('/usuario/{id}/update', [UsuarioController::class,'update'])->name('update');
+Route::get('/usuario/{id}/delete', [UsuarioController::class,'delete'])->name('delete');
 
 Route::get('/categorias', [CategoriaController::class,'index']);
 Route::get('/categoria/{id}', [CategoriaController::class,'show']);
