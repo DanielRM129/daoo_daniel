@@ -23,6 +23,10 @@
                 <td>{{$categoria->id}}</td>
                 <td>{{$categoria->nome}}</td>
                 <td>{{$categoria->imagem}}</td>
+                <td>
+                    <a href="{{route('deleteCat',$categoria->id)}}" title='Deletar'>&#128465</a>
+                    <a href="{{route('editCat',$categoria->id)}}" title='Editar'>&#128464</a>
+                </td>
             </tr>
             @endforeach
         </tbody>

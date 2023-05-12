@@ -46,4 +46,39 @@ class ItemController extends Controller
     public function create(){
         return view('item_create');
     }
+
+    public function update(Request $request, $id)
+    {
+        $updatedItem = $request->all();
+        $item = Item::find($id);
+        $item->nome = $updatedItem['nome'];
+        $item->descricao = $updatedItem['descricao'];
+        $item->imagem = $updatedItem['imagem'];
+        if(!$item->save())
+            dd("Erro ao atualizar o item $id !");
+        return redirect('/itens');
+    }
+
+    public function edit($id)
+    {
+        $dados = ['item' => Item::find($id)];
+        return view('item_edit', $dados);
+    }
+
+    public function delete($id)
+    {
+        // if(Item::find($id)->delete())
+        //     return redirect('/itens');
+        // else dd($id);
+        return view('item_remove',['item' => Item::find($id)]);
+
+    }
+
+    public function remove(Request $request, $id)
+    {
+        if($request->confirmar==="Deletar")
+        if(!Item::destroy($id))
+            dd("Erro ao deletar o item $id !");
+        return redirect('/itens');
+    }
 }

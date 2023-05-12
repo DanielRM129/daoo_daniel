@@ -25,6 +25,10 @@
                 <td>{{$item->nome}}</td>
                 <td>{{$item->descricao}}</td>
                 <td>{{$item->imagem}}</td>
+                <td>
+                    <a href="{{route('deleteItem',$item->id)}}" title='Deletar'>&#128465</a>
+                    <a href="{{route('editItem',$item->id)}}" title='Editar'>&#128464</a>
+                </td>
             </tr>
             @endforeach
         </tbody>

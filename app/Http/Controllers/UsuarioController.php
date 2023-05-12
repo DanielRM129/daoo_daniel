@@ -83,8 +83,17 @@ class UsuarioController extends Controller
 
     public function delete($id)
     {
-        if(Usuario::find($id)->delete())
-            return redirect('/usuarios');
-        else dd($id);
+        // if(Usuario::find($id)->delete())
+        //     return redirect('/usuarios');
+        // else dd($id);
+        return view('usuario_remove',['usuario' => Usuario::find($id)]);
+    }
+
+    public function remove(Request $request, $id)
+    {
+        if($request->confirmar==="Deletar")
+        if(!Usuario::destroy($id))
+            dd("Erro ao deletar o usuário $id !");
+        return redirect('/usuarios');
     }
 }

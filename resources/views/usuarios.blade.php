@@ -28,8 +28,8 @@
                 <td>{{$usuario->senha}}</td>
                 <td>{{($usuario->status)}}</td>
                 <td>
-                    <a href="{{route('delete',$usuario->id)}}" title='Deletar'>&#128465</a>
-                    <a href="{{route('edit',$usuario->id)}}" title='Editar'>&#128464</a>
+                    <a href="{{route('deleteUser',$usuario->id)}}" title='Deletar'>&#128465</a>
+                    <a href="{{route('editUser',$usuario->id)}}" title='Editar'>&#128464</a>
                 </td>
             </tr>
             @endforeach
