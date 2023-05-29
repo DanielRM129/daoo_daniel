@@ -3,25 +3,25 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Usuario;
+use App\Models\Area;
 use Illuminate\Http\Request;
 use Composer\Command\ExecCommand;
 use Exception;
 
-class UsuarioController extends Controller
+class AreaController extends Controller
 {
     public function index()
     {
-        return response()->json(Usuario::all());
+        return response()->json(Area::all());
     }
 
     public function show($id)
     {
         try{
-            return response()->json(Usuario::findOrFail($id));
+            return response()->json(Area::findOrFail($id));
         } catch (\Exception $error) {
         $responseError = [
-            'Erro' => "O usuário com id: $id não foi encontrado!",
+            'Erro' => "A Area com id: $id não foi encontrada!",
             'Exception' => $error->getMassage(),
         ];
         $statusHttp = 404;
@@ -32,15 +32,15 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         try {
-            $newUser = $request->all();
-            $storedUser = Usuario::create($newUser);
+            $newArea = $request->all();
+            $storedArea = Area::create($newArea);
             return response()->json([
-                'msg'=> 'Usuário inserido com sucesso!',
-                'usuario'=>$storedUser
+                'msg'=> 'Area inserida com sucesso!',
+                'area'=>$storedArea
             ]);
         } catch (\Exception $error) {
             $responseError = [
-                'Erro' => "Erro ao inserir novo usuário!",
+                'Erro' => "Erro ao inserir nova Area!",
                 'Exception' => $error->getMessage(),
             ];
             $statusHttp = 404;
@@ -52,15 +52,15 @@ class UsuarioController extends Controller
     {
         try {
             $data = $request->all();
-            $newUser = Usuario::findOrFail($id);
-            $newUser->update($data);
+            $newArea = Area::findOrFail($id);
+            $newArea->update($data);
             return response()->json([
-                'msg'=> 'Usuário atualizado com sucesso!',
-                'usuario'=>$newUser
+                'msg'=> 'Area atualizada com sucesso!',
+                'area'=>$newArea
             ]);
         } catch (\Exception $error) {
             $responseError = [
-                'Erro' => "Erro ao atualizar usuário!",
+                'Erro' => "Erro ao atualizar Area!",
                 'Exception' => $error->getMessage(),
             ];
             $statusHttp = 404;
@@ -71,14 +71,14 @@ class UsuarioController extends Controller
     public function remove($id)
     {
         try{
-            //$deletedUser = destroy($id);
-            $deletedUser = Usuario::findOrFail($id)->delete();
+            $deletedArea = destroy($id);
+            //$deletedArea = Area::findOrFail($id)
             return $response->json([
-                'Message'=>"Usuário com id:$id removido!"
+                'Message'=>"Area com id:$id removida!"
             ]);
         } catch (\Exception $error) {
         $responseError = [
-            'Erro' => "Erro ao excluir usuário!",
+            'Erro' => "Erro ao excluir Area!",
             'Exception' => $error->getMassage(),
         ];
         $statusHttp = 404;

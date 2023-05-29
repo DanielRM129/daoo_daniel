@@ -3,25 +3,25 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Usuario;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 use Composer\Command\ExecCommand;
 use Exception;
 
-class UsuarioController extends Controller
+class CategoriaController extends Controller
 {
     public function index()
     {
-        return response()->json(Usuario::all());
+        return response()->json(Categoria::all());
     }
 
     public function show($id)
     {
         try{
-            return response()->json(Usuario::findOrFail($id));
+            return response()->json(Categoria::findOrFail($id));
         } catch (\Exception $error) {
         $responseError = [
-            'Erro' => "O usuário com id: $id não foi encontrado!",
+            'Erro' => "A categoria com id: $id não foi encontrada!",
             'Exception' => $error->getMassage(),
         ];
         $statusHttp = 404;
@@ -32,15 +32,15 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         try {
-            $newUser = $request->all();
-            $storedUser = Usuario::create($newUser);
+            $newCat = $request->all();
+            $storedCat = Categoria::create($newCat);
             return response()->json([
-                'msg'=> 'Usuário inserido com sucesso!',
-                'usuario'=>$storedUser
+                'msg'=> 'Categoria inserida com sucesso!',
+                'categoria'=>$storedCat
             ]);
         } catch (\Exception $error) {
             $responseError = [
-                'Erro' => "Erro ao inserir novo usuário!",
+                'Erro' => "Erro ao inserir nova categoria!",
                 'Exception' => $error->getMessage(),
             ];
             $statusHttp = 404;
@@ -52,15 +52,15 @@ class UsuarioController extends Controller
     {
         try {
             $data = $request->all();
-            $newUser = Usuario::findOrFail($id);
-            $newUser->update($data);
+            $newCat = Categoria::findOrFail($id);
+            $newCat->update($data);
             return response()->json([
-                'msg'=> 'Usuário atualizado com sucesso!',
-                'usuario'=>$newUser
+                'msg'=> 'Categoria atualizada com sucesso!',
+                'categoria'=>$newCat
             ]);
         } catch (\Exception $error) {
             $responseError = [
-                'Erro' => "Erro ao atualizar usuário!",
+                'Erro' => "Erro ao atualizar categoria!",
                 'Exception' => $error->getMessage(),
             ];
             $statusHttp = 404;
@@ -71,14 +71,14 @@ class UsuarioController extends Controller
     public function remove($id)
     {
         try{
-            //$deletedUser = destroy($id);
-            $deletedUser = Usuario::findOrFail($id)->delete();
+            $deletedCat = destroy($id);
+            //$deletedCat = Categoria::findOrFail($id)
             return $response->json([
-                'Message'=>"Usuário com id:$id removido!"
+                'Message'=>"Categoria com id:$id removido!"
             ]);
         } catch (\Exception $error) {
         $responseError = [
-            'Erro' => "Erro ao excluir usuário!",
+            'Erro' => "Erro ao excluir categoria!",
             'Exception' => $error->getMassage(),
         ];
         $statusHttp = 404;
