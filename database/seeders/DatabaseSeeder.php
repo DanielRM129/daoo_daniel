@@ -18,5 +18,28 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        // \App\Models\Categoria::factory(5)
+        //         ->hasItens(15)
+        //         ->create();
+
+        // \App\Models\Usuario::factory(5)
+        //         ->hasAreas(15)
+        //         ->create();
+
+        $seedUsuario = new UsuarioSeeder();
+        $seedUsuario->run();
+
+        $seedArea = new AreaSeeder();
+        $seedArea->run();
+
+        $seedCategoria = new CategoriaSeeder();
+        $seedCategoria->run();
+
+        $seedItem = new ItemSeeder();
+        $seedItem->run();
+
+        $seedAreaItem = new AreaItemSeeder();
+        $seedAreaItem->run();
     }
 }

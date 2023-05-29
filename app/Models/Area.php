@@ -15,4 +15,14 @@ class Area extends Model
     ];
 
     protected $table = 'areas';
+
+    public function itens()
+    {
+        return $this->belongsToMany(Item::class)
+                    ->withTimestamps();
+    }
+
+    public function usuario(){
+        return $this->belongsTo(Usuario::class);
+    }
 }

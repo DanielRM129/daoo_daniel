@@ -16,4 +16,14 @@ class Item extends Model
     ];
 
     protected $table = 'itens';
+
+    public function categoria(){
+        return $this->belongsTo(Categoria::class);
+    }
+
+    public function areas()
+    {
+        return $this->belongsToMany(Area::class)
+                    ->withTimestamps();
+    }
 }

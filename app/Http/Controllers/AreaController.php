@@ -40,10 +40,44 @@ class AreaController extends Controller
         if (Area::create($novoArea))
             return redirect('/areas');
         else
-            dd("Erro ao inserir novo usuário !");
+            dd("Erro ao inserir nova área !");
     }
 
     public function create(){
         return view('area_create');
+    }
+
+    public function update(Request $request, $id)
+    {
+        $updatedUser = $request->all();
+        $area = Area::find($id);
+        $area->nome = $updatedUser['nome'];
+        $area->descricao = $updatedUser['descricao'];
+        $area->imagem = $updatedUser['imagem'];
+        if(!$area->save())
+            dd("Erro ao atualizar a área $id !");
+        return redirect('/areas');
+    }
+
+    public function edit($id)
+    {
+        $dados = ['area' => Area::find($id)];
+        return view('area_edit', $dados);
+    }
+
+    public function delete($id)
+    {
+        // if(area::find($id)->delete())
+        //     return redirect('/areas');
+        // else dd($id);
+        return view('area_remove',['area' => Area::find($id)]);
+    }
+
+    public function remove(Request $request, $id)
+    {
+        if($request->confirmar==="Deletar")
+        if(!Area::destroy($id))
+            dd("Erro ao deletar a área $id !");
+        return redirect('/areas');
     }
 }

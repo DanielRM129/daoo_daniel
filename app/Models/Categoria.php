@@ -14,4 +14,9 @@ class Categoria extends Model
     ];
 
     protected $table = 'categorias';
+
+    public function itens()
+    {
+        return $this->hasMany(Item::class);
+    }
 }

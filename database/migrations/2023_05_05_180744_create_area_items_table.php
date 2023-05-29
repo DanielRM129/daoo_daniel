@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('area_itens', function (Blueprint $table) {
-            $table->id();
+        Schema::create('area_item', function (Blueprint $table) {
             $table->foreignId('item_id')
                     ->references('id')->on('itens')
                     ->cascadeOnDelete();
             $table->foreignId('area_id')
                     ->references('id')->on('areas')
                     ->cascadeOnDelete();
+            $table->primary(['item_id','area_id']);
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('area_itens');
+        Schema::dropIfExists('area_item');
     }
 };

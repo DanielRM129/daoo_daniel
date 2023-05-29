@@ -62,6 +62,12 @@ Route::get('/areas', [AreaController::class,'index']);
 Route::get('/area/{id}', [AreaController::class,'show']);
 Route::get('/area', [AreaController::class,'create']);
 Route::post('/area', [AreaController::class,'store']);
+Route::get('/area/{id}/edit', [AreaController::class,'edit'])->name('editArea');
+Route::post('/area/{id}/update', [AreaController::class,'update'])->name('updateArea');
+Route::get('/area/{id}/delete', [AreaController::class,'delete'])->name('deleteArea');
+Route::post('/area/{id}/delete', [AreaController::class,'remove'])->name('removeArea');
+
+
 
 Route::get('/dia', function () {
     echo 'Bom Dia Mundo!!';

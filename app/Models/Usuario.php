@@ -16,4 +16,9 @@ class Usuario extends Model
     ];
 
     protected $table = 'usuarios';
+
+    public function areas()
+    {
+        return $this->hasMany(Area::class);
+    }
 }
