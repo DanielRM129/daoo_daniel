@@ -71,9 +71,9 @@ class CategoriaController extends Controller
     public function remove($id)
     {
         try{
-            $deletedCat = destroy($id);
-            //$deletedCat = Categoria::findOrFail($id)
-            return $response->json([
+            //$deletedCat = destroy($id);
+            $deletedCat = Categoria::findOrFail($id)->delete();
+            return response()->json([
                 'Message'=>"Categoria com id:$id removido!"
             ]);
         } catch (\Exception $error) {
@@ -84,5 +84,10 @@ class CategoriaController extends Controller
         $statusHttp = 404;
         return response()->json($responseError, $statusHttp);
         }
+    }
+
+    public function itens(Categoria $categoria)
+    {
+        return response()->json($categoria->itens);
     }
 }

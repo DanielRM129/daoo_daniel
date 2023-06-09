@@ -71,9 +71,9 @@ class ItemController extends Controller
     public function remove($id)
     {
         try{
-            $deletedItem = destroy($id);
-            //$deletedItem = Item::findOrFail($id)
-            return $response->json([
+            //$deletedItem = destroy($id);
+            $deletedItem = Item::findOrFail($id)->delete();
+            return response()->json([
                 'Message'=>"item com id:$id removido!"
             ]);
         } catch (\Exception $error) {

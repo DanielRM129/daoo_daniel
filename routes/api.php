@@ -23,6 +23,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('categorias/{categoria}/itens',[CategoriaController::class, 'itens'])->name('categorias.itens');
+
 Route::get('/usuarios',[UsuarioController::class,'index']);
 Route::get('/usuario/{id}',[UsuarioController::class,'show']);
 Route::post('/usuario',[UsuarioController::class,'store']);

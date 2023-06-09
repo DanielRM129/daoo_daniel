@@ -73,7 +73,7 @@ class UsuarioController extends Controller
         try{
             //$deletedUser = destroy($id);
             $deletedUser = Usuario::findOrFail($id)->delete();
-            return $response->json([
+            return response()->json([
                 'Message'=>"Usuário com id:$id removido!"
             ]);
         } catch (\Exception $error) {

@@ -71,9 +71,9 @@ class AreaController extends Controller
     public function remove($id)
     {
         try{
-            $deletedArea = destroy($id);
-            //$deletedArea = Area::findOrFail($id)
-            return $response->json([
+            //$deletedArea = destroy($id);
+            $deletedArea = Area::findOrFail($id)->delete();
+            return response()->json([
                 'Message'=>"Area com id:$id removida!"
             ]);
         } catch (\Exception $error) {
